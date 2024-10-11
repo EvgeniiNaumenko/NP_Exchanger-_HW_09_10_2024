@@ -30,13 +30,14 @@
         {
             StartServerButton = new Button();
             ServerStatus = new Label();
+            OpenLogButton = new Button();
             SuspendLayout();
             // 
             // StartServerButton
             // 
             StartServerButton.Location = new Point(70, 82);
             StartServerButton.Name = "StartServerButton";
-            StartServerButton.Size = new Size(200, 80);
+            StartServerButton.Size = new Size(200, 45);
             StartServerButton.TabIndex = 0;
             StartServerButton.Text = "START";
             StartServerButton.UseVisualStyleBackColor = true;
@@ -51,9 +52,20 @@
             ServerStatus.TabIndex = 2;
             ServerStatus.Text = "Server : offline";
             // 
+            // OpenLogButton
+            // 
+            OpenLogButton.Location = new Point(70, 147);
+            OpenLogButton.Name = "OpenLogButton";
+            OpenLogButton.Size = new Size(200, 45);
+            OpenLogButton.TabIndex = 3;
+            OpenLogButton.Text = "Открыть логи";
+            OpenLogButton.UseVisualStyleBackColor = true;
+            OpenLogButton.Click += OpenLogButton_Click;
+            // 
             // Form1
             // 
             ClientSize = new Size(339, 228);
+            Controls.Add(OpenLogButton);
             Controls.Add(ServerStatus);
             Controls.Add(StartServerButton);
             Name = "Form1";
@@ -66,5 +78,6 @@
 
         private Button StartServerButton;
         private Label ServerStatus;
+        private Button OpenLogButton;
     }
 }

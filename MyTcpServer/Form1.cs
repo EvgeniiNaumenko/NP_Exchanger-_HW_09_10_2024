@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -14,16 +15,16 @@ namespace MyTcpServer
         private int port = 13000;
         private Dictionary<string, double> exchangeRates = new Dictionary<string, double>
         {
-            { "USD", 1.0 },  
-            { "EUR", 1.05 }, 
-            { "GBP", 1.22 },  
-            { "JPY", 149.00 }, 
+            { "USD", 1.0 },
+            { "EUR", 1.05 },
+            { "GBP", 1.22 },
+            { "JPY", 149.00 },
             { "CHF", 0.91 },
-            { "AUD", 0.63 },   
-            { "CAD", 1.37 }, 
-            { "NZD", 0.59 },  
-            { "CNY", 7.30 },  
-            { "UA", 41.00 }   
+            { "AUD", 0.63 },
+            { "CAD", 1.37 },
+            { "NZD", 0.59 },
+            { "CNY", 7.30 },
+            { "UA", 41.00 }
         };
         private static readonly string logFilePath = "server_log.txt";
         public Form1()
@@ -126,14 +127,24 @@ namespace MyTcpServer
         {
             string logMessage = $"{DateTime.Now}: {clientInfo} - {status}";
             File.AppendAllText(logFilePath, logMessage + Environment.NewLine);
-            Console.WriteLine(logMessage);
         }
 
         private static void LogRequest(string clientInfo, string request, string response)
         {
             string logMessage = $"{DateTime.Now}: {clientInfo} запрос: {request}, ответ: {response}";
             File.AppendAllText(logFilePath, logMessage + Environment.NewLine);
-            Console.WriteLine(logMessage);
+        }
+
+        private void OpenLogButton_Click(object sender, EventArgs e)
+        {
+            if(File.Exists(logFilePath))
+            {
+                Process.Start(new ProcessStartInfo(logFilePath) { UseShellExecute = true});
+            }
+            else
+            {
+                MessageBox.Show("Файл не найден");
+            }
         }
     }
 }
